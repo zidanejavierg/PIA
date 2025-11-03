@@ -646,7 +646,7 @@ def cancelar_reserva():
         fecha_reserva = datetime.datetime.strptime(fecha_str, "%m-%d-%Y").date()
 
         if fecha_reserva < dos_dias_despues:
-            print(f"\n La reserva con folio {folio_sel} no cumple con los 2 días de anticipación.")
+            print(f"\n⚠️ La reserva con folio {folio_sel} no cumple con los 2 días de anticipación.")
             print("Operación rechazada. Solo se pueden cancelar reservas con 2 días de anticipación o más.\n")
             return
 
@@ -709,6 +709,7 @@ def consultar_reservas():
             if not op.isdigit() or int(op) not in [1, 2, 3]:
                 print("Selecciona un formato dentro del rango (1-3).")
                 continue
+                
 
             op = int(op)
             if op == 1:
@@ -746,14 +747,17 @@ def menu():
         elif opcion == "6":
             cancelar_reserva()
         elif opcion == "7":
-            confirmar = input("¿Seguro que deseas salir? (S/N): ").upper()
-            if confirmar == "S":
-                print("Saliendo del sistema...")
-                break
-            else:
-                print("Salida cancelada. Regresando al menú principal.")
-        else:
-            print("Opción inválida.")
+            while True:
+                confirmar = input("¿Seguro que deseas salir? (S/N): ").strip().upper()
+                if confirmar == "S":
+                    print("Saliendo del sistema...")
+                    return  
+                elif confirmar == "N":
+                    print("Salida cancelada. Regresando al menú principal.")
+                    break  
+                else:
+                    print("Opción inválida. Responde solo con 'S' o 'N'.")
 
 if __name__ =="__main__":
     menu()
+
