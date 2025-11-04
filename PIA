@@ -646,7 +646,7 @@ def cancelar_reserva():
         fecha_reserva = datetime.datetime.strptime(fecha_str, "%m-%d-%Y").date()
 
         if fecha_reserva < dos_dias_despues:
-            print(f"\n⚠️ La reserva con folio {folio_sel} no cumple con los 2 días de anticipación.")
+            print(f"\n La reserva con folio {folio_sel} no cumple con los 2 días de anticipación.")
             print("Operación rechazada. Solo se pueden cancelar reservas con 2 días de anticipación o más.\n")
             return
 
